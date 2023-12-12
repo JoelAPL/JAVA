@@ -3,39 +3,22 @@ package ProyectoSemestral;
 public class Enunciado8888 {
 
     public static void main(String[] args) {
-        System.out.println("Los números en formato natural y sus múltiplos");
-        System.out.println("--------------------------------------------");
+        System.out.println("Números en formato natural y sus múltiplos");
+        System.out.println("-----------------------------------------");
         System.out.printf("%-15s%-15s%-15s%n", "Números Impares", "Múltiplos de 3", "Múltiplos de 7");
-        System.out.println("--------------------------------------------");
+        System.out.println("-----------------------------------------");
 
-        // Imprimir listado de números impares entre 1 y 256
-        imprimirNumerosImpares();
-
-        // Imprimir listado de múltiplos de 3 entre 6 y 339
-        imprimirMultiplosDe3();
-
-        // Imprimir listado de múltiplos de 7 menores de 477
-        imprimirMultiplosDe7();
+        // Imprimir listado de números impares, múltiplos de 3 y múltiplos de 7
+        imprimirNumerosMultiplos();
     }
 
-    private static void imprimirNumerosImpares() {
-        for (int i = 1; i <= 256; i += 2) {
-            System.out.printf("%-15d", i);
-        }
-        System.out.println();
-    }
+    private static void imprimirNumerosMultiplos() {
+        int limiteNumerosImpares = 256;
+        int limiteMultiplos3 = 339;
+        int limiteMultiplos7 = 476;
 
-    private static void imprimirMultiplosDe3() {
-        for (int i = 6; i <= 339; i += 3) {
-            System.out.printf("%-15d", i);
+        for (int i = 1, j = 6, k = 7; i <= limiteNumerosImpares || j <= limiteMultiplos3 || k <= limiteMultiplos7; i += 2, j += 3, k += 7) {
+            System.out.printf("%-15s%-15s%-15s%n", (i <= limiteNumerosImpares) ? i : "", (j <= limiteMultiplos3) ? j : "", (k <= limiteMultiplos7) ? k : "");
         }
-        System.out.println();
-    }
-
-    private static void imprimirMultiplosDe7() {
-        for (int i = 7; i < 477; i += 7) {
-            System.out.printf("%-15d", i);
-        }
-        System.out.println();
     }
 }

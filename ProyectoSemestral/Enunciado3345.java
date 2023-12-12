@@ -2,6 +2,7 @@ package ProyectoSemestral;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.*;
 
 public class Enunciado3345 {
 
@@ -32,12 +33,17 @@ public class Enunciado3345 {
 
         // Paso 2: Imprimir los valores generados
         System.out.println("\nValores generados en el conjunto (muestra):");
-        imprimirArreglo(muestra);
+        for (int num : muestra) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
 
         // Paso 3: Calcular y mostrar la moda
-        int[] moda = calcularModa(muestra);
-        System.out.println("\n\nModa del conjunto:");
-        imprimirArreglo(moda);
+        List<Integer> moda = calcularModa(muestra);
+        System.out.println("\nModa del conjunto:");
+        for (int num : moda) {
+            System.out.println(num);
+        }
 
         // Cerrar el scanner
         scanner.close();
@@ -48,55 +54,32 @@ public class Enunciado3345 {
         return (int) (Math.random() * (x - w + 1) + w);
     }
 
-    // Método para imprimir un arreglo de enteros
-    private static void imprimirArreglo(int[] arreglo) {
-        System.out.print("[");
-        for (int i = 0; i < arreglo.length; i++) {
-            System.out.print(arreglo[i]);
-            if (i < arreglo.length - 1) {
-                System.out.print(", ");
-            }
-        }
-        System.out.println("]");
-    }
-
-    // Método para calcular la moda de un conjunto de datos
-    private static int[] calcularModa(int[] muestra) {
+    // Método para calcular la moda de un conjunto de datos y devolver una lista con los números que más se repiten
+    private static List<Integer> calcularModa(int[] muestra) {
         Arrays.sort(muestra);
-        int maxFrecuencia = 1;
-        int frecuenciaActual = 1;
-        int modaActual = muestra[0];
+        Map<Integer, Integer> frecuenciaMapa = new HashMap<>();
 
-        for (int i = 1; i < muestra.length; i++) {
-            if (muestra[i] == muestra[i - 1]) {
-                frecuenciaActual++;
-            } else {
-                frecuenciaActual = 1;
-            }
-
-            if (frecuenciaActual > maxFrecuencia) {
-                maxFrecuencia = frecuenciaActual;
-                modaActual = muestra[i];
-            }
+        for (int i = 0; i < muestra.length; i++) {
+            int numero = muestra[i];
+            frecuenciaMapa.put(numero, frecuenciaMapa.getOrDefault(numero, 0) + 1);
         }
 
-        int cantidadModa = 0;
-        for (int i = 0; i < muestra.length; i++) {
-            if (muestra[i] == modaActual) {
-                cantidadModa++;
-            }
-        }
+        List<Integer> moda = new ArrayList<>();
+        int maxFrecuencia = 0;
 
-        int[] moda = new int[cantidadModa];
-        int index = 0;
-        for (int i = 0; i < muestra.length; i++) {
-            if (muestra[i] == modaActual) {
-                moda[index] = muestra[i];
-                index++;
+        for (Map.Entry<Integer, Integer> entry : frecuenciaMapa.entrySet()) {
+            int numero = entry.getKey();
+            int frecuencia = entry.getValue();
+
+            if (frecuencia > maxFrecuencia) {
+                moda.clear();
+                moda.add(numero);
+                maxFrecuencia = frecuencia;
+            } else if (frecuencia == maxFrecuencia) {
+                moda.add(numero);
             }
         }
 
         return moda;
     }
 }
-
