@@ -34,7 +34,7 @@ El proyecto cuenta cin varios laboratorios con contenidos diversos en los ejerci
 
 ## Screenshots
 
-![Visual Code](Captura.png)
+![Visual Code](https://github.com/JoelAPL/JAVA/blob/main/Captura.PNG)
 
 
 ## Authors
