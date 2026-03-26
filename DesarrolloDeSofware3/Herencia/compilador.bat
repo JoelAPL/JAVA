@@ -1,4 +1,4 @@
-"C:\Program Files\Java\jdk-17\bin" Principal.java
+"C:\Program Files\Java\jdk-17\bin\javac" Padre.java Hija.java Principal.java
 pause
-"C:\Program Files\Java\jdk-17\bin" Princiapal
+"C:\Program Files\Java\jdk-17\bin\java" Principal
 pause

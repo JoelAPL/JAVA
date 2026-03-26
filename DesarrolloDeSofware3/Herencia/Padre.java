@@ -1,8 +1,8 @@
 public class Padre 
 {
-  private String atributo1;
+   String atributo1;
   
-  public void setAtriuto1(String valor)
+  public void setAtributo1(String valor)
   {
     atributo1 = valor;
   } 
