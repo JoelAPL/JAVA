@@ -1,6 +1,6 @@
 public class Padre 
 {
-   String atributo1;
+  private String atributo1;
   
   public void setAtributo1(String valor)
   {
