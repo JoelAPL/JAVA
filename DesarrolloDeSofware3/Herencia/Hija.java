@@ -11,4 +11,8 @@ public class Hija extends Padre
   {
     return atributo2;
   }
+  public void setAtributo1(String valor)
+  {
+    super.setAtributo1("Hija = " + valor);
+  }
 }

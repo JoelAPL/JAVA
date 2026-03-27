@@ -2,6 +2,11 @@ public class Padre
 {
   private String atributo1;
   
+  public void setAtributo1()
+  {
+    atributo1 = "Valor por defecto";
+  } 
+
   public void setAtributo1(String valor)
   {
     atributo1 = valor;
