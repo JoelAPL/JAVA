@@ -6,8 +6,9 @@ public class Grafico {
   }
   Grafico() {
     ventana = new JFrame("Mi Ventana");
-    ventana.setSize(300, 300);
-    ventana.setLocation(200,200);
+    ventana.setSize(500, 300);
+    ventana.setLocation(500,200);
+    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     ventana.setVisible(true);
   }
 }
