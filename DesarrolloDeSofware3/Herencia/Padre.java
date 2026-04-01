@@ -1,6 +1,7 @@
 public class Padre 
 {
   private String atributo1;
+  private int numero;
   
   public void setAtributo1()
   {
