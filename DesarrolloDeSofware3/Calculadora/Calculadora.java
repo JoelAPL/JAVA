@@ -5,8 +5,8 @@ public class Calculadora implements ActionListener {
   private JFrame ventana;
   private JLabel lbl_titulo;
   private JLabel lbl_num1, lbl_num2, lbl_res;
-  private JTextField tf_num1, tf_num2 ,tf_res;
-  private JButton btn_sumar;
+  private JTextField tf_num1, tf_num2 ,tf_res, tf_operador;
+  private JButton btn_sumar, btn_restar, btn_calcular;
 
   public static void main(String[] args) {
       new Calculadora();
@@ -50,6 +50,19 @@ public class Calculadora implements ActionListener {
     btn_sumar.addActionListener(this);
     ventana.add(btn_sumar);
 
+    btn_restar = new JButton("Restar");
+    btn_restar.setBounds(135,150,80,20);
+    btn_restar.addActionListener(this);
+    ventana.add(btn_restar);
+
+    tf_operador = new JTextField();
+    tf_operador.setBounds(160,88,30,20);
+    ventana.add(tf_operador);
+
+    btn_calcular = new JButton("Calcular");
+    btn_calcular.setBounds(220,150,80,20);
+    btn_calcular.addActionListener(this);
+    ventana.add(btn_calcular);
 
     ventana.setVisible(true);
   }
@@ -57,11 +70,16 @@ public class Calculadora implements ActionListener {
   public void actionPerformed(ActionEvent e)
   {
     System.out.println("en ActionPerformed");
+      int num1, num2, res=0 ;
+      num1 = Integer.parseInt(tf_num1.getText());
+      num2 = Integer.parseInt(tf_num2.getText());
+
     if (e.getSource() == btn_sumar){
-      int num1 = Integer.parseInt(tf_num1.getText());
-      int num2 = Integer.parseInt(tf_num2.getText());
-      int res = num1 + num2;
+     res = num1 + num2;
       tf_res.setText(String.valueOf(res));
+    }
+    if (e.getSource() == btn_restar){
+
     }
   }
 }
