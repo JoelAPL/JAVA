@@ -1,7 +1,8 @@
 
+import java.awt.event.*;
 import javax.swing.*;
 
-public class Contador {
+public class Contador implements ActionListener{
     private JFrame ventana;
     private JLabel lbl_titulo, lbl_contador;
     private JTextField tf_contador;
@@ -28,16 +29,26 @@ public class Contador {
         lbl_contador.setBounds(50, 50, 80, 20);
         ventana.add(lbl_contador);
 
-        tf_contador = new JTextField();
+        tf_contador = new JTextField("0");
         tf_contador.setBounds(135, 50, 50, 20);
         ventana.add(tf_contador);  
 
         btn_contador = new JButton("Contar");
         btn_contador.setBounds(190, 50, 80, 20);
+        btn_contador.addActionListener(this);
         ventana.add(btn_contador);
 
 
         ventana.setVisible(true);
 
     }
+
+    public void actionPerformed(ActionEvent e) {
+        
+        System.out.println("en accionPerformed");
+
+        int valor;
+
+    }
+
 }
