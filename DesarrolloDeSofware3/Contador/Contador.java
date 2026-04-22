@@ -6,8 +6,15 @@ public class Contador implements ActionListener{
     private JFrame ventana;
     private JLabel lbl_titulo, lbl_contador;
     private JTextField tf_contador;
-    private JButton btn_contador;
+    private JButton btn_contador, btn_iniciar, btn_parar;
     private int contador;
+
+    Timer timer = new Timer(500, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            contador++;
+            tf_contador.setText(Integer.toString(contador));
+        }
+    });
 
     public static void main(String[] args) {
         new Contador();
@@ -38,6 +45,15 @@ public class Contador implements ActionListener{
         btn_contador.addActionListener(this);
         ventana.add(btn_contador);
 
+        btn_iniciar = new JButton("Iniciar");
+        btn_iniciar.setBounds(190, 75, 80, 20);
+        btn_iniciar.addActionListener(this);
+        ventana.add(btn_iniciar);
+
+        btn_parar = new JButton("Parar");
+        btn_parar.setBounds(190, 100, 80, 20);
+        btn_parar.addActionListener(this);
+        ventana.add(btn_parar);
 
         ventana.setVisible(true);
 
@@ -48,6 +64,18 @@ public class Contador implements ActionListener{
         System.out.println("en accionPerformed");
 
         int valor;
+        valor = Integer.parseInt(tf_contador.getText());
+        if (e.getSource() == btn_contador) {
+            valor++;
+            valor = Integer.parseInt(tf_contador.getText());
+            tf_contador.setText(Integer.toString(valor + 1));            
+        }
+        if (e.getSource() == btn_iniciar) {
+            timer.start();
+        }
+        if (e.getSource() == btn_parar) {
+            timer.stop();
+        }
 
     }
 
