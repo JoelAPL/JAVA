@@ -1,16 +1,19 @@
 import javax.swing.*;
+import java.awt.event.*;
+import java.util.Random;
 
-public class Adivina {
+public class Adivina implements ActionListener{
 
   private JFrame ventana;
   private JLabel lbl_computadora, lbl_usuario, lbl_mensaje, lbl_intentos;
   private JTextField tf_computadora, tf_usuario, tf_mensaje, tf_intentos;
   private JButton btn_iniciar, btn_validar;
+  private  Random rnd;
 
   public static void main(String[] args) {
     new Adivina();
   }
-
+ 
   Adivina(){
     ventana = new JFrame("Adivina");
     ventana.setBounds(100,100,500,500);
@@ -51,14 +54,25 @@ public class Adivina {
 
     btn_iniciar = new JButton("Iniciar");
     btn_iniciar.setBounds(210,50,100,20);
+    btn_iniciar.addActionListener(this);
     ventana.add(btn_iniciar);
 
     btn_validar = new JButton("Validar");
     btn_validar.setBounds(210,75,100,20);
+    btn_validar.addActionListener(this);
     ventana.add(btn_validar);
 
     ventana.setVisible(true);
 
   }
 
+  public void actionPerformed(ActionEvent e){
+    System.out.println("en actionPerformed");
+    if (e.getSource() == btn_iniciar){
+      rnd = new Random();
+      int numero = rnd.nextInt(100);
+      tf_computadora.setText(String.valueOf(numero));
+    }
+    
+  }
 }
