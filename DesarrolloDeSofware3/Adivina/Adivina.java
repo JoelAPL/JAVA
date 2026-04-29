@@ -26,6 +26,7 @@ public class Adivina implements ActionListener{
 
     tf_computadora = new JTextField();
     tf_computadora.setBounds(155,50,50,20);
+    ventana.add(tf_computadora);
 
     lbl_usuario = new JLabel("Usuario");
     lbl_usuario.setBounds(50,75,100,20);
@@ -58,6 +59,7 @@ public class Adivina implements ActionListener{
 
     btn_validar = new JButton("Validar");
     btn_validar.setBounds(210,75,100,20);
+    btn_validar.setEnabled(false);
     btn_validar.addActionListener(this);
     ventana.add(btn_validar);
 
@@ -70,7 +72,14 @@ public class Adivina implements ActionListener{
 
     if (e.getSource() == btn_iniciar) {
       rnd = new Random();
+
       tf_computadora.setText(String.valueOf(rnd.nextInt(100)+1));
+      btn_iniciar.setEnabled(false);
+      btn_validar.setEnabled(true);
+      tf_usuario.setText("");
+      tf_mensaje.setText("");
+      tf_intentos.setText("0");
+
     }
 
     if (e.getSource() == btn_validar)
@@ -83,8 +92,11 @@ public class Adivina implements ActionListener{
           if (tf_usuario.getText().compareTo(tf_computadora.getText()) < 0)
           tf_mensaje.setText("muy bajo");
             else
-            tf_mensaje.setText("correcto");
-
+            {
+              tf_mensaje.setText("correcto");
+              btn_iniciar.setEnabled(true);
+              btn_validar.setEnabled(false);
+            }
       int valor;
       valor = Integer.parseInt(tf_intentos.getText());
       tf_intentos.setText(String.valueOf(valor+1));
