@@ -1,13 +1,13 @@
-import javax.swing.*;
 import java.awt.event.*;
 import java.util.Random;
+import javax.swing.*;
 
 public class AdivinaComputadora implements ActionListener{
 
   private JFrame ventana;
-  private JLabel lbl_computadora, lbl_usuario, lbl_mensaje, lbl_intentos;
-  private JTextField tf_computadora, tf_usuario, tf_mensaje, tf_intentos;
-  private JButton btn_iniciar, btn_validar;
+  private JLabel lbl_inferior, lbl_superior, lbl_computadora, lbl_intentos;
+  private JTextField tf_inferior, tf_superior, tf_computadora, tf_intentos;
+  private JButton btn_inicio,btn_alto,btn_correcto,btn_bajo;
   private  Random rnd;
 
   public static void main(String[] args) {
@@ -20,49 +20,60 @@ public class AdivinaComputadora implements ActionListener{
     ventana.setBounds(100,100,500,500);
     ventana.setLayout(null);
     ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    lbl_inferior = new JLabel("Inferior");
+    lbl_inferior.setBounds(50,50,80,20);
+    ventana.add(lbl_inferior);
+
+    tf_inferior = new JTextField();
+    tf_inferior.setBounds(135,50,50,20);
+    ventana.add(tf_inferior);
+
+    lbl_superior = new JLabel("Superior");
+    lbl_superior.setBounds(50,75,80,20);
+    ventana.add(lbl_superior);
+
+    tf_superior = new JTextField();
+    tf_superior.setBounds(135,75,50,20);
+    ventana.add(tf_superior);
 
     lbl_computadora = new JLabel("Computadora");
-    lbl_computadora.setBounds(50,50,100,20);
+    lbl_computadora.setBounds(50,100,80,20);
     ventana.add(lbl_computadora);
 
-    tf_computadora = new JTextField();
-    tf_computadora.setBounds(155,50,50,20);
+    tf_computadora = new JTextField(); 
+    tf_computadora.setBounds(135,100,50,20);
     ventana.add(tf_computadora);
-
-    lbl_usuario = new JLabel("Usuario");
-    lbl_usuario.setBounds(50,75,100,20);
-    ventana.add(lbl_usuario);
-
-    tf_usuario = new JTextField();
-    tf_usuario.setBounds(155,75,50,20);
-    ventana.add(tf_usuario);
-
-    lbl_mensaje = new JLabel("Mensaje");
-    lbl_mensaje.setBounds(50,100,50,20);
-    ventana.add(lbl_mensaje);
-
-    tf_mensaje = new JTextField();
-    tf_mensaje.setBounds(155,100,70,20);
-    ventana.add(tf_mensaje);
 
     lbl_intentos = new JLabel("Intentos");
     lbl_intentos.setBounds(50,125,50,20);
     ventana.add(lbl_intentos);
 
     tf_intentos = new JTextField("0");
-    tf_intentos.setBounds(155,125,50,20);
+    tf_intentos.setBounds(135,125,50,20);
     ventana.add(tf_intentos);
 
-    btn_iniciar = new JButton("Iniciar");
-    btn_iniciar.setBounds(210,50,100,20);
-    btn_iniciar.addActionListener(this);
-    ventana.add(btn_iniciar);
+    btn_inicio = new JButton("Inicio");
+    btn_inicio.setBounds(200,50,80,20);
+    btn_inicio.addActionListener(this);
+    ventana.add(btn_inicio);
 
-    btn_validar = new JButton("Validar");
-    btn_validar.setBounds(210,75,100,20);
-    btn_validar.setEnabled(false);
-    btn_validar.addActionListener(this);
-    ventana.add(btn_validar);
+    btn_alto = new JButton("Alto");
+    btn_alto.setBounds(200,75,80,20);
+    btn_alto.addActionListener(this);
+    ventana.add(btn_alto);
+
+    btn_correcto = new JButton("Correcto");
+    btn_correcto.setBounds(200,100,80,20);
+    btn_correcto.addActionListener(this);
+    ventana.add(btn_correcto);
+    
+    btn_bajo = new JButton("Bajo");
+    btn_bajo.setBounds(200,125,80,20);
+    btn_bajo.addActionListener(this);
+    ventana.add(btn_bajo);
+
+    rnd = new Random();
 
     ventana.setVisible(true);
 
@@ -70,40 +81,43 @@ public class AdivinaComputadora implements ActionListener{
 
   public void actionPerformed(ActionEvent e){
     System.out.println("en actionPerformed");
-
-    if (e.getSource() == btn_iniciar) {
-      rnd = new Random();
-
-      tf_computadora.setText(String.valueOf(rnd.nextInt(100)+1));
-      btn_iniciar.setEnabled(false);
-      btn_validar.setEnabled(true);
-      tf_usuario.setText("");
-      tf_mensaje.setText("");
-      tf_intentos.setText("0");
-
-    }
-
-    if (e.getSource() == btn_validar)
   
-    {
-      
-      if (tf_usuario.getText().compareTo(tf_computadora.getText()) > 0)
-        tf_mensaje.setText("muy alto");
-       else 
-          if (tf_usuario.getText().compareTo(tf_computadora.getText()) < 0)
-          tf_mensaje.setText("muy bajo");
-            else
-            {
-              tf_mensaje.setText("correcto");
-              btn_iniciar.setEnabled(true);
-              btn_validar.setEnabled(false);
-            }
-      int valor;
-      valor = Integer.parseInt(tf_intentos.getText());
-      tf_intentos.setText(String.valueOf(valor+1));
+      if (e.getSource() == btn_inicio) 
+      {
+        tf_inferior.setText("1");
+        tf_superior.setText("100");
 
+        int inferior, superior, numero;
+        inferior = Integer.parseInt(tf_inferior.getText());
+        superior = Integer.parseInt(tf_superior.getText());
+        numero = rnd.nextInt(superior)+ inferior;
 
+        tf_computadora.setText(String.valueOf(numero));
+      }
+      if (e.getSource() == btn_alto) 
+      {
+        tf_superior.setText(tf_computadora.getText());
+
+        int inferior, superior, numero;
+        inferior = Integer.parseInt(tf_inferior.getText());
+        superior = Integer.parseInt(tf_superior.getText());
+        numero = rnd.nextInt(superior)+ inferior;
+        tf_computadora.setText(String.valueOf(numero));
+      }
+      if (e.getSource() == btn_bajo) 
+      {
+        tf_inferior.setText(tf_computadora.getText());
+
+        int inferior, superior, numero;
+        inferior = Integer.parseInt(tf_inferior.getText());
+        superior = Integer.parseInt(tf_superior.getText());
+        numero = rnd.nextInt(superior)+ inferior;
+        tf_computadora.setText(String.valueOf(numero));
+      }
+       if (e.getSource() == btn_correcto) 
+      {
+        JOptionPane.showMessageDialog(null,"La computadora adivino el numero");
+      }
     }
     
-  }
 }
