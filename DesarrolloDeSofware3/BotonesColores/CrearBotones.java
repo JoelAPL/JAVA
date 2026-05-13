@@ -9,7 +9,7 @@ public class CrearBotones implements ActionListener
    private JButton btn_boton, btn_tmp, btn_crear;
    private JLabel lbl_numero, lbl_x, lbl_y, lbl_titulo;
    private JTextField tf_numero, tf_x, tf_y;
-   private Font fnt_titulo = new Font("Arial",Font.BOLD,16);
+   private Font fnt_titulo = new Font("Arial",Font.PLAIN,12);
 
    public static void main(String[] args)
    {
