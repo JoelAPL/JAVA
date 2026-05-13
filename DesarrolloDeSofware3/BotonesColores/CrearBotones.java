@@ -10,7 +10,7 @@ public class CrearBotones implements ActionListener
    private JLabel lbl_numero, lbl_x, lbl_y, lbl_titulo;
    private JTextField tf_numero, tf_x, tf_y;
    private Font fnt_titulo = new Font("Arial",Font.PLAIN,12);
-
+   
    public static void main(String[] args)
    {
       new CrearBotones();
@@ -27,6 +27,9 @@ public class CrearBotones implements ActionListener
       lbl_titulo = new JLabel("Crear Botones");
       lbl_titulo.setBounds(120,10,140,20);
       lbl_titulo.setFont(fnt_titulo);
+      lbl_titulo.setForeground(Color.BLUE);
+      lbl_titulo.setBackground(Color.YELLOW);
+      lbl_titulo.setOpaque(true);
       ventana.add(lbl_titulo);
 
       btn_crear = new JButton("Crear");
