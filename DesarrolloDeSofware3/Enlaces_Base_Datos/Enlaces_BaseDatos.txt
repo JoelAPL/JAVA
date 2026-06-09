@@ -1,0 +1,13 @@
+******
+Driver o conector para MySql (mysql-connector-j-9.7.0.jar)
+https://dev.mysql.com/downloads/connector/j/
+
+******
+UniformServer Versión 15_0_2_ZeroXV
+Servidor Web, PHP, MySql
+
+https://www.uniformserver.com/
+
+*****
+
+
