@@ -1,6 +1,6 @@
 import java.util.List;
 
-public public class Alumno {
+public class Alumno {
     private String nombre;
     private int numeroEstudiante;
     private int edad;
@@ -14,7 +14,4 @@ public public class Alumno {
     private List<String> cursosInscritos;
 
     // Constructor y métodos según sea necesario
-}
- {
-    
 }

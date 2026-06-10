@@ -1,11 +1,13 @@
 package lab10;
 
+import java.util.Scanner;
+
 public class Ejercicio10 {
     private static final int MAX_DISCOS = 10;
     private Disco[] discos;
     private int numDiscos;
 
-    public ColeccionDiscos() {
+    public Ejercicio10() {
         discos = new Disco[MAX_DISCOS];
         numDiscos = 0;
     }
@@ -206,7 +208,7 @@ public class Ejercicio10 {
     }
 
     public static void main(String[] args) {
-        ColeccionDiscos coleccionDiscos = new ColeccionDiscos();
+        Ejercicio10 coleccionDiscos = new Ejercicio10();
         coleccionDiscos.ejecutar();
     }
 }
