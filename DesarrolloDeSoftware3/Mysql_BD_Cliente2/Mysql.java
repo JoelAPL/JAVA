@@ -1,0 +1,173 @@
+import java.sql.*;
+import javax.swing.*;
+import java.awt.event.*;
+import javax.swing.table.*;
+
+public class Mysql implements ActionListener
+{
+
+   Cliente cliente;
+
+   private JFrame ventana;
+
+   //private DefaultListModel<String> listModel;
+   //private JList<String> lst_cliente;
+
+   private DefaultTableModel dtm_cliente;
+   private JTable tb_cliente;
+
+   private JScrollPane jsp_cliente;
+
+   private JButton btn_listar, btn_buscar, btn_insertar;
+   private JButton btn_modificar, btn_eliminar;
+
+   private JLabel lbl_cedula, lbl_nombre, lbl_apellido;
+   private JTextField tf_cedula, tf_nombre, tf_apellido;
+
+   private String URL, user, pass;
+   private String cedula, nombre, apellido, sql;
+
+   public static void main(String[] args)
+   {
+      new Mysql();
+   }
+
+   Mysql()
+   {
+
+      cliente = new Cliente();
+
+      ventana = new JFrame("Mysql");
+      ventana.setBounds(100,100,600,500);
+      ventana.setLayout(null);
+      ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+      //listModel = new DefaultListModel<String>();
+      //lst_cliente = new JList<String>(listModel);
+
+      dtm_cliente = new DefaultTableModel();
+      tb_cliente = new JTable(dtm_cliente);
+
+      //jsp_cliente = new JScrollPane(lst_cliente);
+      jsp_cliente = new JScrollPane(tb_cliente);
+      jsp_cliente.setBounds(50,50,200,200);
+      ventana.add(jsp_cliente);
+
+      btn_listar = new JButton("Listar");
+      btn_listar.setBounds(50,25,80,20);
+      btn_listar.addActionListener(this);
+      ventana.add(btn_listar);
+
+      lbl_cedula = new JLabel("Cedula:");
+      lbl_cedula.setBounds(270,50,80,20);
+      ventana.add(lbl_cedula);
+
+      tf_cedula = new JTextField();
+      tf_cedula.setBounds(355,50,80,20);
+      ventana.add(tf_cedula);
+
+      lbl_nombre = new JLabel("Nombre:");
+      lbl_nombre.setBounds(270,75,80,20);
+      ventana.add(lbl_nombre);
+
+      tf_nombre = new JTextField();
+      tf_nombre.setBounds(355,75,80,20);
+      ventana.add(tf_nombre);
+
+      lbl_apellido = new JLabel("Apellido:");
+      lbl_apellido.setBounds(270,100,80,20);
+      ventana.add(lbl_apellido);
+
+      tf_apellido = new JTextField();
+      tf_apellido.setBounds(355,100,80,20);
+      ventana.add(tf_apellido);
+
+      btn_buscar = new JButton("Buscar");
+      btn_buscar.setBounds(440,50,80,20);
+      btn_buscar.addActionListener(this);
+      ventana.add(btn_buscar);
+
+      btn_insertar = new JButton("Insertar");
+      btn_insertar.setBounds(440,75,80,20);
+      btn_insertar.addActionListener(this);
+      ventana.add(btn_insertar);
+
+      btn_modificar = new JButton("Modificar");
+      btn_modificar.setBounds(440,100,80,20);
+      btn_modificar.addActionListener(this);
+      ventana.add(btn_modificar);
+
+      btn_eliminar = new JButton("Eliminar");
+      btn_eliminar.setBounds(440,125,80,20);
+      btn_eliminar.addActionListener(this);
+      ventana.add(btn_eliminar);
+
+
+      ventana.setVisible(true);
+   }
+
+   public void actionPerformed(ActionEvent e)
+   {
+      System.out.println("en actionPerformed");
+
+      if (e.getSource() == btn_listar)
+         listar();
+      if (e.getSource() == btn_buscar)
+         buscar();
+      if (e.getSource() == btn_insertar)
+         insertar();
+      if (e.getSource() == btn_modificar)
+         modificar();
+      if (e.getSource() == btn_eliminar)
+         eliminar();
+   }
+
+   public void listar()
+   {
+      cliente.listar(dtm_cliente);      
+   }
+
+   public void buscar()
+   {
+      cliente.buscar(tf_cedula.getText());
+      tf_nombre.setText(cliente.getNombre());
+      tf_apellido.setText(cliente.getApellido());
+
+   }
+
+   public void insertar()
+   {
+      pasar_tf_cliente();
+      cliente.insertar();
+      listar();
+   }
+ 
+   public void modificar()
+   {
+      pasar_tf_cliente();
+      cliente.modificar();
+      listar();
+   }
+   
+   private void eliminar()
+   {
+      pasar_tf_cliente();
+      cliente.eliminar();
+      listar();
+   }
+
+
+   private void pasar_tf_cliente()
+   {
+      cliente.setCedula(tf_cedula.getText());
+      cliente.setNombre(tf_nombre.getText());
+      cliente.setApellido(tf_apellido.getText());
+
+   }
+}
+
+
+
+
+
+
