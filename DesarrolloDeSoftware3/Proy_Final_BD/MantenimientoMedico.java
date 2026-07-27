@@ -149,7 +149,7 @@ public class MantenimientoMedico implements ActionListener
       ventana.add(jsp_tabla);
    }
 
-   void estadoInicial()
+   void limpiarCampos()
    {
       tf_codigo.setText("");
       tf_cedula.setText("");
@@ -171,9 +171,24 @@ public class MantenimientoMedico implements ActionListener
       tf_especialidad.setEnabled(false);
       tf_pac_mes.setEnabled(false);
       tf_pac_anual.setEnabled(false);
+   }
 
+   void estadoInicial()
+   {
+      limpiarCampos();
       btn_buscar.setEnabled(true);
       btn_limpiar.setEnabled(true);
+      btn_listar.setEnabled(true);
+      btn_adicionar.setEnabled(false);
+      btn_modificar.setEnabled(false);
+      btn_eliminar.setEnabled(false);
+   }
+
+   void estadoPostOperacion()
+   {
+      limpiarCampos();
+      btn_buscar.setEnabled(true);
+      btn_limpiar.setEnabled(false);
       btn_listar.setEnabled(true);
       btn_adicionar.setEnabled(false);
       btn_modificar.setEnabled(false);
@@ -253,7 +268,7 @@ public class MantenimientoMedico implements ActionListener
       pasarCampos();
       medico.insertar();
       lbl_mensaje.setText("Medico agregado correctamente.");
-      estadoInicial();
+      estadoPostOperacion();
    }
 
    void modificar()
@@ -261,7 +276,7 @@ public class MantenimientoMedico implements ActionListener
       pasarCampos();
       medico.modificar();
       lbl_mensaje.setText("Medico modificado correctamente.");
-      estadoInicial();
+      estadoPostOperacion();
    }
 
    void eliminar()
@@ -269,7 +284,7 @@ public class MantenimientoMedico implements ActionListener
       medico.setCodigo(tf_codigo.getText().trim());
       medico.eliminar();
       lbl_mensaje.setText("Medico eliminado correctamente.");
-      estadoInicial();
+      estadoPostOperacion();
    }
 
    void listar()

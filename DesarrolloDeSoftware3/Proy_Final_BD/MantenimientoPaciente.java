@@ -149,7 +149,7 @@ public class MantenimientoPaciente implements ActionListener
       ventana.add(jsp_tabla);
    }
 
-   void estadoInicial()
+   void limpiarCampos()
    {
       tf_cedula.setText("");
       tf_nombre.setText("");
@@ -170,9 +170,24 @@ public class MantenimientoPaciente implements ActionListener
       tf_edad.setEnabled(false);
       rb_m.setEnabled(false);
       rb_f.setEnabled(false);
+   }
 
+   void estadoInicial()
+   {
+      limpiarCampos();
       btn_buscar.setEnabled(true);
       btn_limpiar.setEnabled(true);
+      btn_listar.setEnabled(true);
+      btn_adicionar.setEnabled(false);
+      btn_modificar.setEnabled(false);
+      btn_eliminar.setEnabled(false);
+   }
+
+   void estadoPostOperacion()
+   {
+      limpiarCampos();
+      btn_buscar.setEnabled(true);
+      btn_limpiar.setEnabled(false);
       btn_listar.setEnabled(true);
       btn_adicionar.setEnabled(false);
       btn_modificar.setEnabled(false);
@@ -250,7 +265,7 @@ public class MantenimientoPaciente implements ActionListener
       pasarCampos();
       paciente.insertar();
       lbl_mensaje.setText("Paciente agregado correctamente.");
-      estadoInicial();
+      estadoPostOperacion();
    }
 
    void modificar()
@@ -258,7 +273,7 @@ public class MantenimientoPaciente implements ActionListener
       pasarCampos();
       paciente.modificar();
       lbl_mensaje.setText("Paciente modificado correctamente.");
-      estadoInicial();
+      estadoPostOperacion();
    }
 
    void eliminar()
@@ -266,7 +281,7 @@ public class MantenimientoPaciente implements ActionListener
       paciente.setCedula(tf_cedula.getText().trim());
       paciente.eliminar();
       lbl_mensaje.setText("Paciente eliminado correctamente.");
-      estadoInicial();
+      estadoPostOperacion();
    }
 
    void listar()
